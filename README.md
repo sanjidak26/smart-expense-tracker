@@ -1,3 +1,7 @@
+# 💰 Smart Expense Tracker
+
+[🌐 Live Demo](https://smart-expense-tracker-nine-peach.vercel.app) | [💻 GitHub Repository](https://github.com/sanjidak26/smart-expense-tracker)
+
 # Smart Expense Tracker
 
 A modern, full-stack personal finance and expense tracking application built on the MERN stack.
