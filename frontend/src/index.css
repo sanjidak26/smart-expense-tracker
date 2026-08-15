@@ -6,40 +6,76 @@
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+
+  --primary-pink: #DB2777;
+  --dark-pink: #BE185D;
+  --light-pink: #FCE7F3;
+  --soft-pink: #FFF7FB;
+  --white: #FFFFFF;
+  --text: #1F1720;
+  --muted-text: #6B5B66;
+  --expense: #E11D48;
+  --warning: #D97706;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--soft-pink);
+  color: var(--text);
 }
 
-/* Dark mode default body background */
+/* Dark mode */
 .dark body {
-  background-color: #020617;
-  color: #f8fafc;
+  background-color: #1F1720;
+  color: #FFF7FB;
 }
 
 /* Micro-animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateY(20px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes scaleUp {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes slideRight {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
 .animate-fade-in {
@@ -64,15 +100,24 @@ body {
     background: white !important;
     color: black !important;
   }
+
   .print\:hidden {
     display: none !important;
   }
+
   .print\:p-0 {
     padding: 0 !important;
   }
-  aside, header, button, form, .select-container, .print-hide {
+
+  aside,
+  header,
+  button,
+  form,
+  .select-container,
+  .print-hide {
     display: none !important;
   }
+
   main {
     margin: 0 !important;
     padding: 0 !important;

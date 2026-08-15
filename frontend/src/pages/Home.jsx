@@ -20,16 +20,16 @@ const Home = () => {
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute -left-32 -top-32 w-96 h-96 bg-brand-650/15 rounded-full blur-3xl" />
-      <div className="absolute -right-32 -bottom-32 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl" />
+      <div className="absolute -right-32 -bottom-32 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl" />
 
       {/* Header */}
       <header className="border-b border-slate-900 bg-slate-900/40 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-650 to-indigo-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-650 to-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
             <Cpu className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="font-bold text-lg leading-tight bg-gradient-to-r from-brand-400 to-indigo-300 bg-clip-text text-transparent">
+            <h1 className="font-bold text-lg leading-tight bg-gradient-to-r from-brand-400 to-brand-300 bg-clip-text text-transparent">
               Smart Expense Tracker
             </h1>
             <p className="text-xs text-slate-500">MERN Authentication System</p>
@@ -50,14 +50,14 @@ const Home = () => {
         <div className="w-full max-w-lg bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl relative">
           
           {/* Status Badge */}
-          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold shadow-md">
+          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-gold-400 text-xs font-semibold shadow-md">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Authenticated Session</span>
           </div>
 
           {/* Profile Card Header */}
           <div className="text-center mt-4 mb-8">
-            <div className="inline-flex w-16 h-16 rounded-full bg-gradient-to-tr from-brand-650 to-indigo-500 items-center justify-center shadow-lg shadow-brand-500/20 mb-4 p-0.5">
+            <div className="inline-flex w-16 h-16 rounded-full bg-gradient-to-tr from-brand-650 to-brand-500 items-center justify-center shadow-lg shadow-brand-500/20 mb-4 p-0.5">
               <div className="w-full h-full bg-slate-950 rounded-full flex items-center justify-center">
                 <User className="w-8 h-8 text-brand-400" />
               </div>

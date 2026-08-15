@@ -81,7 +81,7 @@ const Transactions = () => {
       const queryParams = new URLSearchParams();
       queryParams.append('page', page);
       queryParams.append('limit', 10);
-      
+
       if (filters.search) queryParams.append('search', filters.search);
       if (filters.type !== 'all') queryParams.append('type', filters.type);
       if (filters.category !== 'all') queryParams.append('category', filters.category);
@@ -232,13 +232,13 @@ const Transactions = () => {
   const formatCurrency = (val) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
     }).format(val);
   };
 
   return (
     <div className="space-y-6 animate-fade-in print:p-0">
-      
+
       {/* HEADER SECTION (HIDDEN ON PRINT) */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 print:hidden">
         <div>
@@ -249,7 +249,7 @@ const Transactions = () => {
             Create, search, filter and export your financial items.
           </p>
         </div>
-        
+
         <div className="flex items-center gap-3">
           <button
             onClick={handleExportCSV}
@@ -258,7 +258,7 @@ const Transactions = () => {
             <Download className="w-3.5 h-3.5" />
             <span>Export CSV</span>
           </button>
-          
+
           <button
             onClick={handlePrintPDF}
             className="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-bold text-slate-655 dark:text-slate-350 transition duration-200 cursor-pointer shadow-sm"
@@ -281,7 +281,7 @@ const Transactions = () => {
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm print:hidden">
         <form onSubmit={handleSearchSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-            
+
             {/* Search Input */}
             <div className="md:col-span-4 relative group">
               <input
@@ -420,11 +420,10 @@ const Transactions = () => {
                       })}
                     </td>
                     <td className="py-4.5 px-6 whitespace-nowrap">
-                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase border ${
-                        tx.type === 'income'
-                          ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400'
+                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase border ${tx.type === 'income'
+                          ? 'bg-gold/10 border-gold/20 text-gold-700 dark:text-gold-400'
                           : 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300'
-                      }`}>
+                        }`}>
                         {tx.type === 'income' ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
                         {tx.type}
                       </span>
@@ -435,9 +434,8 @@ const Transactions = () => {
                     <td className="py-4.5 px-6 text-sm max-w-xs truncate">
                       {tx.description || <span className="text-slate-400 dark:text-slate-600 italic">No description</span>}
                     </td>
-                    <td className={`py-4.5 px-6 text-sm font-bold text-right whitespace-nowrap ${
-                      tx.type === 'income' ? 'text-emerald-500' : 'text-slate-800 dark:text-slate-100'
-                    }`}>
+                    <td className={`py-4.5 px-6 text-sm font-bold text-right whitespace-nowrap ${tx.type === 'income' ? 'text-gold' : 'text-slate-800 dark:text-slate-100'
+                      }`}>
                       {tx.type === 'income' ? '+' : '-'}
                       {formatCurrency(tx.amount)}
                     </td>
@@ -500,7 +498,7 @@ const Transactions = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 print:hidden">
           {/* Backdrop */}
           <div className="fixed inset-0 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-sm" onClick={() => setModalOpen(false)} />
-          
+
           {/* Form Card */}
           <div className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-full max-w-md rounded-3xl p-6.5 shadow-2xl animate-scale-up">
             <div className="flex items-center justify-between mb-5">
@@ -516,28 +514,26 @@ const Transactions = () => {
             </div>
 
             <form onSubmit={handleFormSubmit} className="space-y-4">
-              
+
               {/* Type selector (Segmented control style) */}
               <div className="grid grid-cols-2 p-1 bg-slate-100 dark:bg-slate-950 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                 <button
                   type="button"
                   onClick={() => handleFormChange({ target: { name: 'type', value: 'expense' } })}
-                  className={`py-2 px-4 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer ${
-                    form.type === 'expense'
+                  className={`py-2 px-4 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer ${form.type === 'expense'
                       ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm border border-slate-200/50 dark:border-slate-700/50'
                       : 'text-slate-500 dark:text-slate-400 hover:text-slate-800'
-                  }`}
+                    }`}
                 >
                   Expense
                 </button>
                 <button
                   type="button"
                   onClick={() => handleFormChange({ target: { name: 'type', value: 'income' } })}
-                  className={`py-2 px-4 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer ${
-                    form.type === 'income'
+                  className={`py-2 px-4 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer ${form.type === 'income'
                       ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm border border-slate-200/50 dark:border-slate-700/50'
                       : 'text-slate-500 dark:text-slate-400 hover:text-slate-800'
-                  }`}
+                    }`}
                 >
                   Income
                 </button>
@@ -546,7 +542,7 @@ const Transactions = () => {
               {/* Amount Field */}
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-slate-500 dark:text-slate-400 pl-1">
-                  Amount (USD)
+                  Amount (INR)
                 </label>
                 <input
                   type="number"

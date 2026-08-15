@@ -112,7 +112,7 @@ const Budgets = () => {
   const formatCurrency = (val) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
     }).format(val);
   };
 
@@ -126,10 +126,10 @@ const Budgets = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in">
-      
+
       {/* LEFT COLUMN: BUDGET SETUP FORM & TOTAL CARD */}
       <div className="space-y-6 lg:col-span-1">
-        
+
         {/* PERIOD SELECTOR */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm space-y-4">
           <h3 className="font-extrabold text-slate-800 dark:text-slate-100 flex items-center gap-2">
@@ -205,7 +205,7 @@ const Budgets = () => {
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-550 dark:text-slate-455 pl-1">
-                Budget Limit (USD)
+                Budget Limit (INR)
               </label>
               <div className="relative group">
                 <input
@@ -259,17 +259,16 @@ const Budgets = () => {
               <span className="text-slate-450 dark:text-slate-400">Total Spent</span>
               <span className="text-slate-850 dark:text-slate-200">{formatCurrency(totals.spent)}</span>
             </div>
-            
+
             {/* Progress Bar */}
             <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
               <div
-                className={`h-full rounded-full transition-all duration-500 ${
-                  totals.isExceeded
-                    ? 'bg-rose-500'
+                className={`h-full rounded-full transition-all duration-500 ${totals.isExceeded
+                    ? 'bg-brand-600'
                     : totals.isNearLimit
-                    ? 'bg-amber-500'
-                    : 'bg-brand-600'
-                }`}
+                      ? 'bg-brand-500'
+                      : 'bg-gold'
+                  }`}
                 style={{ width: `${Math.min(100, totals.percentage)}%` }}
               />
             </div>
@@ -278,15 +277,15 @@ const Budgets = () => {
               <span className="text-slate-400 dark:text-slate-500">Usage: {totals.percentage.toFixed(0)}%</span>
               <span>
                 {totals.isExceeded ? (
-                  <span className="text-rose-500 flex items-center gap-1">
+                  <span className="text-brand-600 flex items-center gap-1">
                     <AlertTriangle className="w-3.5 h-3.5" /> Exceeded
                   </span>
                 ) : totals.isNearLimit ? (
-                  <span className="text-amber-500 flex items-center gap-1">
+                  <span className="text-brand-500 flex items-center gap-1">
                     <AlertTriangle className="w-3.5 h-3.5" /> Near Limit
                   </span>
                 ) : (
-                  <span className="text-emerald-500 flex items-center gap-1">
+                  <span className="text-gold flex items-center gap-1">
                     <CheckCircle className="w-3.5 h-3.5" /> Within Budget
                   </span>
                 )}
@@ -324,33 +323,30 @@ const Budgets = () => {
             {budgetsProgress.map((item) => (
               <div
                 key={item._id}
-                className={`p-5 rounded-2xl border transition hover:shadow-sm ${
-                  item.isExceeded
-                    ? 'border-rose-500/30 bg-rose-500/[0.02] dark:bg-rose-500/[0.04]'
+                className={`p-5 rounded-2xl border transition hover:shadow-sm ${item.isExceeded
+                    ? 'border-brand-600/30 bg-brand-600/[0.02] dark:bg-brand-600/[0.04]'
                     : item.isNearLimit
-                    ? 'border-amber-500/30 bg-amber-500/[0.02] dark:bg-amber-500/[0.04]'
-                    : 'border-slate-100 dark:border-slate-800 bg-slate-50/[0.3] dark:bg-slate-900/20'
-                }`}
+                      ? 'border-brand-500/30 bg-brand-500/[0.02] dark:bg-brand-500/[0.04]'
+                      : 'border-slate-100 dark:border-slate-800 bg-slate-50/[0.3] dark:bg-slate-900/20'
+                  }`}
               >
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <h4 className="font-extrabold text-sm text-slate-850 dark:text-slate-100">{item.category}</h4>
-                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 mt-1 rounded-full text-[9px] font-extrabold uppercase border ${
-                      item.isExceeded
-                        ? 'bg-rose-500/10 border-rose-500/20 text-rose-600 dark:text-rose-400'
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 mt-1 rounded-full text-[9px] font-extrabold uppercase border ${item.isExceeded
+                        ? 'bg-brand-600/10 border-brand-600/20 text-brand-600 dark:text-brand-400'
                         : item.isNearLimit
-                        ? 'bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-400'
-                        : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400'
-                    }`}>
+                          ? 'bg-brand-500/10 border-brand-500/20 text-brand-500 dark:text-brand-400'
+                          : 'bg-gold/10 border-gold/20 text-gold-700 dark:text-gold-400'
+                      }`}>
                       {item.isExceeded ? 'Exceeded' : item.isNearLimit ? 'Near Limit' : 'Safe'}
                     </span>
                   </div>
-                  
+
                   <div className="text-right">
                     <span className="text-xs text-slate-400 dark:text-slate-500 font-bold block">Percentage</span>
-                    <span className={`text-base font-extrabold ${
-                      item.isExceeded ? 'text-rose-500' : item.isNearLimit ? 'text-amber-500' : 'text-slate-800 dark:text-slate-200'
-                    }`}>
+                    <span className={`text-base font-extrabold ${item.isExceeded ? 'text-brand-600' : item.isNearLimit ? 'text-brand-500' : 'text-slate-800 dark:text-slate-200'
+                      }`}>
                       {item.percentage.toFixed(0)}%
                     </span>
                   </div>
@@ -359,9 +355,8 @@ const Budgets = () => {
                 {/* Progress Bar */}
                 <div className="w-full bg-slate-200/50 dark:bg-slate-850 h-2 rounded-full overflow-hidden mb-3.5">
                   <div
-                    className={`h-full rounded-full transition-all duration-300 ${
-                      item.isExceeded ? 'bg-rose-500' : item.isNearLimit ? 'bg-amber-500' : 'bg-emerald-500'
-                    }`}
+                    className={`h-full rounded-full transition-all duration-300 ${item.isExceeded ? 'bg-brand-600' : item.isNearLimit ? 'bg-brand-500' : 'bg-gold'
+                      }`}
                     style={{ width: `${Math.min(100, item.percentage)}%` }}
                   />
                 </div>

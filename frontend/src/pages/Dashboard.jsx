@@ -71,7 +71,7 @@ const Dashboard = () => {
       try {
         setLoadingTip(true);
         const res = await api.get('/ai/insights');
-        
+
         // Extract a short summary line if AI insights exist, or use a default tip
         const mdText = res.data.insights || '';
         let tipLine = '';
@@ -83,7 +83,7 @@ const Dashboard = () => {
             tipLine = bullet.replace(/^[\s*-]+/, '').trim();
           }
         }
-        
+
         setAiTip(tipLine || 'Save at least 20% of your salary first before deciding your monthly discretionary spending budgets.');
         setLoadingTip(false);
       } catch (error) {
@@ -98,21 +98,21 @@ const Dashboard = () => {
   const formatCurrency = (val) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
     }).format(val);
   };
 
   const getCategoryColor = (category) => {
     const cats = {
-      salary: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
-      food: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
-      dining: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
-      utilities: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
-      bills: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
-      rent: 'bg-purple-500/10 text-purple-500 border-purple-500/20',
-      transport: 'bg-cyan-500/10 text-cyan-500 border-cyan-500/20',
-      entertainment: 'bg-indigo-500/10 text-indigo-500 border-indigo-500/20',
-      shopping: 'bg-rose-500/10 text-rose-500 border-rose-500/20',
+      salary: 'bg-gold/10 text-gold border-gold/20',
+      food: 'bg-brand-500/10 text-brand-500 border-brand-500/20',
+      dining: 'bg-brand-500/10 text-brand-500 border-brand-500/20',
+      utilities: 'bg-brand-600/10 text-brand-650 border-brand-600/20',
+      bills: 'bg-brand-600/10 text-brand-650 border-brand-600/20',
+      rent: 'bg-slate-500/10 text-slate-500 border-slate-500/20',
+      transport: 'bg-brand-700/10 text-brand-700 border-brand-700/20',
+      entertainment: 'bg-brand-500/10 text-brand-500 border-brand-500/20',
+      shopping: 'bg-brand-600/10 text-brand-600 border-brand-600/20',
     };
     return cats[category.toLowerCase()] || 'bg-slate-500/10 text-slate-500 border-slate-500/20';
   };
@@ -128,7 +128,7 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-8 animate-fade-in">
-      
+
       {/* HEADER SECTION */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -149,7 +149,7 @@ const Dashboard = () => {
       </div>
 
       {/* AI INSIGHT CARD BAR */}
-      <div className="bg-gradient-to-r from-brand-600/5 to-indigo-500/5 dark:from-brand-500/10 dark:to-indigo-500/10 border border-brand-500/25 dark:border-brand-500/15 rounded-3xl p-5 flex items-start gap-4">
+      <div className="bg-gradient-to-r from-brand-600/5 to-brand-500/5 dark:from-brand-500/10 dark:to-brand-500/10 border border-brand-500/25 dark:border-brand-500/15 rounded-3xl p-5 flex items-start gap-4">
         <div className="p-2.5 rounded-2xl bg-brand-600 dark:bg-brand-500 text-white shadow-md shadow-brand-500/20">
           <Sparkles className="w-5 h-5" />
         </div>
@@ -166,7 +166,7 @@ const Dashboard = () => {
 
       {/* CORE FINANCIAL COUNTER CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        
+
         {/* Balance Card */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
           <div className="absolute right-0 top-0 w-24 h-24 bg-brand-500/5 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
@@ -180,7 +180,7 @@ const Dashboard = () => {
             {formatCurrency(summary.balance)}
           </p>
           <div className="flex items-center gap-1 mt-2.5">
-            <div className={`text-xs font-bold flex items-center ${summary.balance >= 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
+            <div className={`text-xs font-bold flex items-center ${summary.balance >= 0 ? 'text-gold' : 'text-brand-600'}`}>
               <Activity className="w-3.5 h-3.5 mr-1" />
               <span>Current Cash Balance</span>
             </div>
@@ -189,55 +189,55 @@ const Dashboard = () => {
 
         {/* Income Card */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-emerald-500/5 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
+          <div className="absolute right-0 top-0 w-24 h-24 bg-gold/5 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
           <div className="flex justify-between items-start mb-4">
-            <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 rounded-2xl text-emerald-500">
+            <div className="p-3 bg-gold/10 dark:bg-gold/10 rounded-2xl text-gold">
               <TrendingUp className="w-6 h-6" />
             </div>
             <span className="text-xs font-bold text-slate-400 dark:text-slate-500">Inflow</span>
           </div>
-          <p className="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 truncate">
+          <p className="text-2xl font-extrabold text-gold truncate">
             {formatCurrency(summary.income)}
           </p>
           <p className="text-xs font-bold text-slate-400 dark:text-slate-500 mt-2.5 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span className="w-1.5 h-1.5 rounded-full bg-gold" />
             Total monthly income
           </p>
         </div>
 
         {/* Expense Card */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-rose-500/5 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
+          <div className="absolute right-0 top-0 w-24 h-24 bg-brand-600/5 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
           <div className="flex justify-between items-start mb-4">
-            <div className="p-3 bg-rose-50 dark:bg-rose-950/40 rounded-2xl text-rose-500">
+            <div className="p-3 bg-brand-50 dark:bg-brand-900/40 rounded-2xl text-brand-500">
               <TrendingDown className="w-6 h-6" />
             </div>
             <span className="text-xs font-bold text-slate-400 dark:text-slate-500">Outflow</span>
           </div>
-          <p className="text-2xl font-extrabold text-rose-600 dark:text-rose-450 truncate">
+          <p className="text-2xl font-extrabold text-brand-655 dark:text-brand-500 truncate">
             {formatCurrency(summary.expense)}
           </p>
           <p className="text-xs font-bold text-slate-400 dark:text-slate-500 mt-2.5 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-500" />
             Total monthly expenses
           </p>
         </div>
 
         {/* Savings Rate Card */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-indigo-500/5 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
+          <div className="absolute right-0 top-0 w-24 h-24 bg-brand-600/5 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
           <div className="flex justify-between items-start mb-4">
-            <div className="p-3 bg-indigo-50 dark:bg-indigo-950/40 rounded-2xl text-indigo-500">
+            <div className="p-3 bg-brand-50 dark:bg-brand-900/40 rounded-2xl text-brand-500">
               <Sparkles className="w-6 h-6" />
             </div>
             <span className="text-xs font-bold text-slate-400 dark:text-slate-500">Savings Rate</span>
           </div>
-          <p className="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400 truncate">
+          <p className="text-2xl font-extrabold text-brand-600 dark:text-brand-400 truncate">
             {summary.savingsRate}%
           </p>
           <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
             <div
-              className="bg-indigo-600 h-full rounded-full transition-all duration-500"
+              className="bg-brand-600 h-full rounded-full transition-all duration-500"
               style={{ width: `${Math.min(100, summary.savingsRate)}%` }}
             />
           </div>
@@ -247,7 +247,7 @@ const Dashboard = () => {
 
       {/* ALERTS & RECENT GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+
         {/* RECENT TRANSACTIONS (2/3 width on desktop) */}
         <div className="lg:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm flex flex-col">
           <div className="flex items-center justify-between mb-6">
@@ -295,9 +295,8 @@ const Dashboard = () => {
                     </div>
 
                     <div className="text-right">
-                      <span className={`text-sm font-bold flex items-center justify-end ${
-                        tx.type === 'income' ? 'text-emerald-500' : 'text-slate-800 dark:text-slate-200'
-                      }`}>
+                      <span className={`text-sm font-bold flex items-center justify-end ${tx.type === 'income' ? 'text-gold' : 'text-slate-800 dark:text-slate-200'
+                        }`}>
                         {tx.type === 'income' ? '+' : '-'}
                         {formatCurrency(tx.amount)}
                       </span>
@@ -319,7 +318,7 @@ const Dashboard = () => {
           <div className="flex-1 overflow-y-auto space-y-4">
             {budgetAlerts.length === 0 ? (
               <div className="h-full min-h-[220px] flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 gap-2 text-center px-4">
-                <div className="w-12 h-12 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full flex items-center justify-center text-emerald-500 mb-2">
+                <div className="w-12 h-12 bg-gold/10 dark:bg-gold/15 rounded-full flex items-center justify-center text-gold mb-2">
                   <TrendingUp className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-350">All Budgets Safe</span>
@@ -331,11 +330,10 @@ const Dashboard = () => {
               budgetAlerts.map((alert) => (
                 <div
                   key={alert._id}
-                  className={`p-4.5 rounded-2xl border ${
-                    alert.isExceeded
-                      ? 'bg-rose-500/5 dark:bg-rose-500/10 border-rose-500/20 text-rose-700 dark:text-rose-450'
-                      : 'bg-amber-500/5 dark:bg-amber-500/10 border-amber-500/20 text-amber-700 dark:text-amber-450'
-                  }`}
+                  className={`p-4.5 rounded-2xl border ${alert.isExceeded
+                      ? 'bg-brand-600/5 dark:bg-brand-600/10 border-brand-600/20 text-brand-600 dark:text-brand-400'
+                      : 'bg-gold/5 dark:bg-gold/10 border-gold/20 text-gold dark:text-gold'
+                    }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -346,12 +344,11 @@ const Dashboard = () => {
                       {alert.percentage.toFixed(0)}%
                     </span>
                   </div>
-                  
+
                   <div className="w-full bg-slate-200/50 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mb-2">
                     <div
-                      className={`h-full rounded-full transition-all duration-300 ${
-                        alert.isExceeded ? 'bg-rose-500' : 'bg-amber-500'
-                      }`}
+                      className={`h-full rounded-full transition-all duration-300 ${alert.isExceeded ? 'bg-brand-600' : 'bg-gold'
+                        }`}
                       style={{ width: `${Math.min(100, alert.percentage)}%` }}
                     />
                   </div>

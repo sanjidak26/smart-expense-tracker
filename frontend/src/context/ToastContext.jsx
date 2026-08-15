@@ -37,17 +37,17 @@ const ToastItem = ({ toast, onClose }) => {
   const { id, message, type } = toast;
 
   const bgStyles = {
-    success: 'bg-emerald-500/10 dark:bg-emerald-500/15 border-emerald-500/20 text-emerald-700 dark:text-emerald-400',
-    error: 'bg-rose-500/10 dark:bg-rose-500/15 border-rose-500/20 text-rose-700 dark:text-rose-400',
-    warning: 'bg-amber-500/10 dark:bg-amber-500/15 border-amber-500/20 text-amber-700 dark:text-amber-400',
-    info: 'bg-blue-500/10 dark:bg-blue-500/15 border-blue-500/20 text-blue-700 dark:text-blue-400',
+    success: 'bg-gold/10 dark:bg-gold/15 border-gold/20 text-gold-700 dark:text-gold-400',
+    error: 'bg-brand-500/10 dark:bg-brand-500/15 border-brand-500/20 text-brand-700 dark:text-brand-400',
+    warning: 'bg-gold/10 dark:bg-gold/15 border-gold/20 text-gold-700 dark:text-gold-400',
+    info: 'bg-brand-600/10 dark:bg-brand-600/15 border-brand-600/20 text-brand-600 dark:text-brand-400',
   };
 
   const icons = {
-    success: <CheckCircle className="w-5 h-5 shrink-0 text-emerald-500 dark:text-emerald-400" />,
-    error: <AlertCircle className="w-5 h-5 shrink-0 text-rose-500 dark:text-rose-400" />,
-    warning: <AlertTriangle className="w-5 h-5 shrink-0 text-amber-500 dark:text-amber-400" />,
-    info: <Info className="w-5 h-5 shrink-0 text-blue-500 dark:text-blue-400" />,
+    success: <CheckCircle className="w-5 h-5 shrink-0 text-gold" />,
+    error: <AlertCircle className="w-5 h-5 shrink-0 text-brand-500" />,
+    warning: <AlertTriangle className="w-5 h-5 shrink-0 text-gold" />,
+    info: <Info className="w-5 h-5 shrink-0 text-brand-600" />,
   };
 
   return (

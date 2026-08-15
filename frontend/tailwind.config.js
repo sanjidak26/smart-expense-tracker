@@ -9,31 +9,96 @@ export default {
     extend: {
       colors: {
         brand: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563EB', // Core Blue Theme
-          650: '#2563EB', // Compatibility hook for existing files
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
+          50: '#FFF1F2',
+          100: '#FFE4E6',
+          200: '#FECDD3',
+          300: '#FDA4AF',
+          400: '#FB7185',
+          500: '#EC4899',
+          600: '#DB2777',
+          650: '#DB2777',
+          700: '#BE185D',
+          800: '#9D174D',
+          900: '#831843',
+          950: '#500724',
         },
         success: {
-          DEFAULT: '#10B981', // Core Green Theme
-          light: '#ecfdf5',
-          dark: '#047857',
+          DEFAULT: '#D4A72C', // Gold
+          light: '#FFFBEB',
+          dark: '#B45309',
         },
         warning: {
-          DEFAULT: '#F59E0B', // Core Amber Theme
-          light: '#fffbeb',
-          dark: '#b45309',
+          DEFAULT: '#D4A72C', // Gold
+          light: '#FFFBEB',
+          dark: '#B45309',
         },
-        finBg: '#F8FAFC',
-        finText: '#1E293B',
+        finBg: '#FFF7FB',
+        finText: '#1F1720',
+        charcoal: '#1F1720',
+        burgundy: '#BE185D',
+        ruby: '#DB2777',
+        gold: '#D4A72C',
+        warmwhite: '#FAFAF9',
+        darkText: '#1C1917',
+
+        // Safety net: Map built-in blue, indigo, green, emerald, cyan, teal to avoid any blue/green leaks
+        indigo: {
+          50: '#FFF1F2',
+          100: '#FFE4E6',
+          200: '#FECDD3',
+          300: '#FDA4AF',
+          400: '#FB7185',
+          500: '#EC4899',
+          600: '#DB2777',
+          700: '#BE185D',
+          800: '#9D174D',
+          900: '#831843',
+          950: '#500724',
+        },
+        emerald: {
+          50: '#FFFBEB',
+          100: '#FEF9C3',
+          200: '#FEF08A',
+          300: '#FDE047',
+          400: '#D4A72C', // Gold
+          500: '#D4A72C', // Gold
+          600: '#A16207',
+          700: '#854D0E',
+          800: '#713F12',
+          900: '#422006',
+          950: '#1C1917',
+        },
+        blue: {
+          50: '#FFF1F2',
+          100: '#FFE4E6',
+          200: '#FECDD3',
+          300: '#FDA4AF',
+          400: '#FB7185',
+          500: '#EC4899',
+          600: '#DB2777',
+          700: '#BE185D',
+          800: '#9D174D',
+          900: '#831843',
+          950: '#500724',
+        },
+        green: {
+          50: '#FFFBEB',
+          100: '#FEF9C3',
+          500: '#D4A72C', // Gold
+          600: '#A16207',
+        },
+        cyan: {
+          50: '#FFF1F2',
+          100: '#FFE4E6',
+          500: '#EC4899',
+          600: '#DB2777',
+        },
+        teal: {
+          50: '#FFFBEB',
+          100: '#FEF9C3',
+          500: '#D4A72C', // Gold
+          600: '#A16207',
+        }
       },
     },
   },

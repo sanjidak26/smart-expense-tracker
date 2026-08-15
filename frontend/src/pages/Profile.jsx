@@ -192,7 +192,7 @@ const Profile = () => {
 
           {/* Secure session info badge */}
           <div className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center gap-2.5 text-xs text-slate-400">
-            <ShieldCheck className="w-4.5 h-4.5 text-emerald-500 shrink-0" />
+            <ShieldCheck className="w-4.5 h-4.5 text-gold shrink-0" />
             <span>Updates are secured with end-to-end token encryption.</span>
           </div>
         </div>
@@ -200,7 +200,7 @@ const Profile = () => {
         {/* CHANGE PASSWORD FORM */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm">
           <div className="mb-6 flex items-center gap-3">
-            <div className="p-3 bg-indigo-50 dark:bg-indigo-950/40 rounded-2xl text-indigo-600 dark:text-indigo-400">
+            <div className="p-3 bg-brand-50 dark:bg-brand-900/40 rounded-2xl text-brand-600 dark:text-brand-400">
               <KeyRound className="w-5 h-5" />
             </div>
             <div>

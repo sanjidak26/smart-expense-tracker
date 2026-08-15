@@ -67,16 +67,16 @@ const Login = () => {
     <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6 relative overflow-hidden font-sans">
       {/* Blurred background ambient lights */}
       <div className="absolute -right-40 -top-40 w-96 h-96 bg-brand-650/20 rounded-full blur-3xl animate-pulse duration-[8000ms]" />
-      <div className="absolute -left-40 -bottom-40 w-96 h-96 bg-indigo-500/25 rounded-full blur-3xl animate-pulse duration-[6000ms]" />
+      <div className="absolute -left-40 -bottom-40 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl animate-pulse duration-[6000ms]" />
 
       <div className="w-full max-w-md bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl relative z-10 transition-all duration-300">
         
         {/* Logo/Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-650 to-indigo-500 items-center justify-center shadow-lg shadow-brand-500/20 mb-4">
+          <div className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-650 to-brand-500 items-center justify-center shadow-lg shadow-brand-500/20 mb-4">
             <KeyRound className="w-6 h-6 text-white" />
           </div>
-          <h2 className="text-3xl font-extrabold bg-gradient-to-r from-brand-400 to-indigo-300 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-extrabold bg-gradient-to-r from-brand-400 to-brand-300 bg-clip-text text-transparent">
             Welcome Back
           </h2>
           <p className="text-slate-400 text-sm mt-1.5">
@@ -86,15 +86,15 @@ const Login = () => {
 
         {/* Success/Error Alerts */}
         {uiState.error && (
-          <div className="mb-6 flex items-start gap-3 p-4 bg-rose-500/10 border border-rose-500/30 rounded-2xl text-rose-300 text-sm animate-shake">
-            <AlertCircle className="w-5 h-5 shrink-0 text-rose-400" />
+          <div className="mb-6 flex items-start gap-3 p-4 bg-brand-500/10 border border-brand-500/30 rounded-2xl text-brand-300 text-sm animate-shake">
+            <AlertCircle className="w-5 h-5 shrink-0 text-brand-450" />
             <span>{uiState.error}</span>
           </div>
         )}
 
         {uiState.success && (
-          <div className="mb-6 flex items-start gap-3 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl text-emerald-300 text-sm">
-            <Check className="w-5 h-5 shrink-0 text-emerald-400" />
+          <div className="mb-6 flex items-start gap-3 p-4 bg-gold/10 border border-gold/30 rounded-2xl text-gold text-sm">
+            <Check className="w-5 h-5 shrink-0 text-gold" />
             <span>{uiState.success}</span>
           </div>
         )}
@@ -151,7 +151,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={uiState.loading}
-            className="w-full mt-2 bg-gradient-to-r from-brand-650 to-indigo-500 hover:from-brand-700 hover:to-indigo-600 disabled:from-slate-800 disabled:to-slate-800 text-white font-semibold py-3 px-4 rounded-2xl shadow-lg shadow-brand-500/10 hover:shadow-brand-500/25 transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer"
+            className="w-full mt-2 bg-gradient-to-r from-brand-650 to-brand-500 hover:from-brand-700 hover:to-brand-600 disabled:from-slate-800 disabled:to-slate-800 text-white font-semibold py-3 px-4 rounded-2xl shadow-lg shadow-brand-500/10 hover:shadow-brand-500/25 transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer"
           >
             {uiState.loading ? (
               <>
