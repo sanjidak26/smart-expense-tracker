@@ -1,94 +1,139 @@
-# Smart Expense Tracker
+# 💰 Smart Expense Tracker
 
-A modern, full-stack personal finance and expense tracking application built on the MERN stack.
+[🌐 Live Demo](https://smart-expense-tracker-nine-peach.vercel.app) | [💻 GitHub Repository](https://github.com/sanjidak26/smart-expense-tracker)
 
-## Tech Stack
-- **Frontend**: React 19 (Vite), Tailwind CSS 3, Axios, Lucide React
-- **Backend**: Node.js, Express.js, MongoDB (Mongoose), JSON Web Token (JWT)
+# 💰 Smart Expense Tracker with Data Analytics
+
+Smart Expense Tracker is a modern full-stack personal finance management platform built with **React.js, Node.js, Express.js, MongoDB, Tailwind CSS, JWT Authentication, Recharts, and Gemini AI**. It helps users manage income, expenses, budgets, and savings through a centralized dashboard while providing interactive data analytics and AI-powered financial insights for smarter financial planning.
 
 ---
 
-## Folder Structure
+## 🚀 Features
+
+### 👤 User Authentication
+
+- Secure user registration and login
+- JWT-based authentication
+- Password hashing with bcrypt
+- Protected routes
+- User profile management
+- Secure logout
+
+### 💸 Income & Expense Management
+
+- Add income and expense records
+- Edit and delete transactions
+- Categorize transactions
+- Search transactions
+- Filter by type and category
+- Filter by date range
+- View complete transaction history
+
+### 💰 Budget Management
+
+- Create monthly budgets
+- Track budget usage
+- Monitor remaining budget
+- Budget progress tracking
+- Budget alerts
+
+### 📊 Data Analytics Dashboard
+
+- Total income tracking
+- Total expense tracking
+- Savings overview
+- Income vs Expense analysis
+- Category-wise spending analysis
+- Monthly spending trends
+- Interactive financial charts
+- Financial performance insights
+
+### 🤖 AI-Powered Financial Assistant
+
+- Natural language financial queries
+- Spending analysis
+- Financial summaries
+- Budget recommendations
+- Saving suggestions
+- Personalized financial insights
+- Gemini AI integration
+
+### 📄 Reports & Export
+
+- Export transactions as CSV
+- Print financial reports
+- Search and filter transaction history
+
+### 🎨 Modern UI
+
+- Responsive design
+- Clean fintech-style dashboard
+- Dark mode
+- Toast notifications
+- Loading states
+- Mobile-friendly interface
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React.js
+- Vite
+- Tailwind CSS
+- Axios
+- Recharts
+- Lucide React Icons
+
+### Backend
+
+- Node.js
+- Express.js
+- REST API
+- JWT Authentication
+- bcrypt
+
+### Database
+
+- MongoDB
+- Mongoose
+- MongoDB Atlas
+
+### AI
+
+- Gemini API
+
+### Deployment
+
+- Vercel – Frontend
+- Render – Backend
+- MongoDB Atlas – Database
+
+---
+
+## 📁 Project Structure
+
 ```text
 SmartExpenseTracker/
-├── backend/                  # Node.js + Express.js API
-│   ├── config/               # Database connections (Mongoose)
-│   ├── controllers/          # Business logic handlers
-│   ├── middleware/           # Express custom middleware (Auth, Errors)
-│   ├── models/               # Mongoose Schemas (User)
-│   ├── routes/               # API route definitions
-│   ├── utils/                # Helper functions & utilities
-│   ├── app.js                # Express middleware & setups
-│   └── server.js             # Express server entry point
-├── frontend/                 # React client (Vite)
-│   ├── public/               # Static assets
+│
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
+│   └── server.js
+│
+├── frontend/
 │   ├── src/
-│   │   ├── assets/           # Images, logo assets
-│   │   ├── components/       # Reusable layout/UI components
-│   │   ├── context/          # React context providers
-│   │   ├── hooks/            # Custom React hooks
-│   │   ├── pages/            # Page view screens
-│   │   ├── services/         # Axios API connection endpoints
-│   │   ├── utils/            # Helper utilities (currency formatters, etc)
-│   │   ├── App.jsx           # Main React component
-│   │   └── index.css         # Tailwind injection file
-│   └── vite.config.js        # Configures port 3000 and /api proxy
-```
-
----
-
-## Prerequisites
-Make sure you have the following installed on your machine:
-- [Node.js](https://nodejs.org/) (v18 or higher recommended)
-- [MongoDB Community Server](https://www.mongodb.com/try/download/community) (running locally) or a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) URI
-
----
-
-## Getting Started
-
-### 1. Clone & Open
-Navigate to the root directory `SmartExpenseTracker`.
-
-### 2. Configure Environment Variables
-Environment templates have been configured for both frontend and backend.
-
-#### Backend Env Setup
-Create a `.env` file in the `backend/` directory:
-```bash
-# In backend/ directory
-PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/smart-expense-tracker
-JWT_SECRET=your_jwt_secret_key_here
-NODE_ENV=development
-```
-
-#### Frontend Env Setup
-Create a `.env` file in the `frontend/` directory:
-```bash
-# In frontend/ directory
-VITE_API_URL=/api
-```
-
----
-
-## How to Run the Project
-
-You will need to open two separate terminal windows or run them concurrently.
-
-### Terminal 1: Backend
-Go to the `backend` folder, install dependencies, and run the developer daemon:
-```bash
-cd backend
-npm install
-npm run dev
-```
-*The API will start on **http://localhost:5000**, checking connection to MongoDB.*
-
-### Terminal 2: Frontend
-Go to the `frontend` folder, install dependencies, and run the Vite compiler:
-```bash
-cd frontend
-npm install --legacy-peer-deps
-npm run dev
-```
-*The client app will launch at **http://localhost:3000**. The proxy in `vite.config.js` will automatically redirect requests starting with `/api` to the backend on port 5000.*
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── utils/
+│   ├── public/
+│   └── vite.config.js
+│
+└── README.md
