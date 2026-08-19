@@ -13,7 +13,7 @@ const callGemini = async (prompt) => {
     throw new Error('Gemini API key is missing. Please add GEMINI_API_KEY in your backend/.env file to activate AI features.');
   }
 
-  const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+  const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -243,14 +243,14 @@ Rules:
   } catch (error) {
     if (error.message.includes('Gemini API key') || error.message.includes('API key')) {
       const relatedKeywords = [
-        'income', 'expense', 'budget', 'saving', 'transaction', 'analytic', 
-        'spending', 'spent', 'earn', 'salary', 'finance', 'money', 'cost', 
+        'income', 'expense', 'budget', 'saving', 'transaction', 'analytic',
+        'spending', 'spent', 'earn', 'salary', 'finance', 'money', 'cost',
         'chart', 'graph', 'report', 'balance', 'track', 'category', 'dining',
         'shopping', 'groceries', 'rent', 'utilities', 'bills', 'rupee', 'inr', '₹'
       ];
       const messageLower = message.toLowerCase();
-      const isRelated = relatedKeywords.some(keyword => messageLower.includes(keyword)) || 
-                        /₹|amount|total|sum|history|show|list|how much/i.test(messageLower);
+      const isRelated = relatedKeywords.some(keyword => messageLower.includes(keyword)) ||
+        /₹|amount|total|sum|history|show|list|how much/i.test(messageLower);
 
       if (!isRelated) {
         res.status(200).json({
