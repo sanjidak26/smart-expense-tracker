@@ -13,7 +13,7 @@ const callGemini = async (prompt) => {
     throw new Error('Gemini API key is missing. Please add GEMINI_API_KEY in your backend/.env file to activate AI features.');
   }
 
-  const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+  const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent';
   try {
     const response = await fetch(url, {
       method: 'POST',
