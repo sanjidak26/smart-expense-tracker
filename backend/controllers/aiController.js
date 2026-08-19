@@ -9,38 +9,45 @@ import mongoose from 'mongoose';
  */
 const callGemini = async (prompt) => {
   const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey || apiKey === 'your_gemini_api_key_here') {
+  if (!apiKey || apiKey === 'your_gemini_api_key_here' || apiKey === 'your_gemini_api_key') {
     throw new Error('Gemini API key is missing. Please add GEMINI_API_KEY in your backend/.env file to activate AI features.');
   }
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-goog-api-key': apiKey,
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            role: 'user',
+            parts: [
+              {
+                text: prompt,
+              },
+            ],
+          },
+        ],
+      }),
+    });
 
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      contents: [
-        {
-          parts: [
-            {
-              text: prompt,
-            },
-          ],
-        },
-      ],
-    }),
-  });
+    if (!response.ok) {
+      const errorText = await response.text();
+      const sanitizedError = apiKey ? errorText.split(apiKey).join('[REDACTED]') : errorText;
+      throw new Error(`Gemini API error: ${response.status} ${response.statusText} - ${sanitizedError}`);
+    }
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Gemini API error: ${response.status} ${response.statusText} - ${errorText}`);
+    const data = await response.json();
+    const textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    return textResponse || 'No response from the financial assistant.';
+  } catch (error) {
+    const sanitizedMsg = apiKey ? error.message.split(apiKey).join('[REDACTED]') : error.message;
+    throw new Error(sanitizedMsg);
   }
-
-  const data = await response.json();
-  const textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  return textResponse || 'No response from the financial assistant.';
 };
 
 /**
@@ -57,7 +64,7 @@ const getFinancialContext = async (userId) => {
   // 1. Get recent transactions (last 30 days)
   const last30Days = new Date();
   last30Days.setDate(last30Days.getDate() - 30);
-  
+
   const transactions = await Transaction.find({
     user: userId,
     date: { $gte: last30Days }
@@ -106,11 +113,12 @@ const getFinancialContext = async (userId) => {
   });
 
   // Format context text
+  // Format context text
   let context = `USER FINANCIAL CONTEXT (Current Period: Month ${currentMonth}, Year ${currentYear})\n`;
   context += `Summary stats for this month:\n`;
-  context += `- Total Income: $${totalIncome.toFixed(2)}\n`;
-  context += `- Total Expense: $${totalExpense.toFixed(2)}\n`;
-  context += `- Balance: $${(totalIncome - totalExpense).toFixed(2)}\n`;
+  context += `- Total Income: ₹${totalIncome.toFixed(2)}\n`;
+  context += `- Total Expense: ₹${totalExpense.toFixed(2)}\n`;
+  context += `- Balance: ₹${(totalIncome - totalExpense).toFixed(2)}\n`;
   context += `- Savings Rate: ${totalIncome > 0 ? (((totalIncome - totalExpense) / totalIncome) * 100).toFixed(1) : 0}%\n\n`;
 
   context += `Expenses Category-wise breakdown this month:\n`;
@@ -118,7 +126,7 @@ const getFinancialContext = async (userId) => {
     context += `- No expenses logged this month yet.\n`;
   } else {
     categorySpending.forEach((item) => {
-      context += `- ${item._id}: $${item.totalSpent.toFixed(2)}\n`;
+      context += `- ${item._id}: ₹${item.totalSpent.toFixed(2)}\n`;
     });
   }
   context += `\n`;
@@ -129,7 +137,7 @@ const getFinancialContext = async (userId) => {
   } else {
     budgets.forEach((b) => {
       const actualSpend = categorySpending.find((item) => item._id === b.category)?.totalSpent || 0;
-      context += `- ${b.category}: Limit $${b.limit.toFixed(2)} (Spent so far: $${actualSpend.toFixed(2)})\n`;
+      context += `- ${b.category}: Limit ₹${b.limit.toFixed(2)} (Spent so far: ₹${actualSpend.toFixed(2)})\n`;
     });
   }
   context += `\n`;
@@ -140,7 +148,7 @@ const getFinancialContext = async (userId) => {
   } else {
     transactions.slice(0, 10).forEach((tx) => {
       const dateStr = new Date(tx.date).toISOString().split('T')[0];
-      context += `- [${dateStr}] ${tx.type.toUpperCase()}: ${tx.category} - $${tx.amount.toFixed(2)} (${tx.description || 'No description'})\n`;
+      context += `- [${dateStr}] ${tx.type.toUpperCase()}: ${tx.category} - ₹${tx.amount.toFixed(2)} (${tx.description || 'No description'})\n`;
     });
   }
 
@@ -155,15 +163,15 @@ const getFinancialContext = async (userId) => {
 export const getAIInsights = async (req, res, next) => {
   try {
     const context = await getFinancialContext(req.user._id);
-    
+
     const prompt = `
 You are an expert AI Financial Planner and wealth management coach. 
 Analyze the following financial context of a user and generate:
-1. **Spending Analysis**: Highlight where the user is spending the most and if there are any unusual patterns or warning flags (e.g., categories near or exceeding budgets).
+1. **Spending Analysis**: Highlight where the user is spending the most in INR (₹) and if there are any unusual patterns or warning flags (e.g., categories near or exceeding budgets).
 2. **Savings Opportunities**: Provide 3 specific, actionable recommendations on how the user can reduce expenses and increase their savings rate based on their transaction history.
-3. **Budget Recommendations**: Advise on whether current budget limits are realistic or need adjustment, and suggest limits for unbudgeted categories if needed.
+3. **Budget Recommendations**: Advise on whether current budget limits in INR (₹) are realistic or need adjustment, and suggest limits for unbudgeted categories if needed.
 
-Keep the advice practical, supportive, and direct. Use bullet points and professional formatting. Return the response in Markdown format.
+Keep the advice practical, supportive, and direct. Always format currency in INR (₹). Use bullet points and professional formatting. Return the response in Markdown format.
 
 ${context}
     `;
@@ -209,9 +217,11 @@ export const chatWithAI = async (req, res, next) => {
     }
 
     const prompt = `
-You are "SmartFinance AI", a friendly and highly knowledgeable personal financial advisor. 
-Your goal is to answer the user's financial question using their current financial details for context. 
-If they ask unrelated questions, gently redirect them back to financial matters.
+You are "SmartFinance AI", the assistant for the Smart Expense Tracker.
+You must ONLY answer questions directly related to: income, expenses, budgets, savings, transactions, and analytics, using the real user data provided in the user's profile in INR (₹).
+
+If the user's question is NOT about these topics, or is unrelated to their Smart Expense Tracker (for example, general knowledge, programming, weather, general math, jokes, or anything not directly about their personal finance tracking), you MUST reply EXACTLY with this text and absolutely nothing else:
+"I can only answer questions related to your Smart Expense Tracker."
 
 User's Financial Profile:
 ${context}
@@ -220,19 +230,37 @@ ${chatHistoryStr}
 User's Question: "${message}"
 
 Rules:
-1. Provide a professional, encouraging, and clear answer.
-2. Refer to specific categories, budgets, or numbers from the profile if relevant to their question.
-3. Limit your response to 2-3 short paragraphs or clean bullet points.
-4. Output your answer using clean Markdown.
+1. You must only answer questions about the user's income, expenses, budgets, savings, transactions, and financial analytics.
+2. For any unrelated or out-of-scope questions, your entire response must be exactly: "I can only answer questions related to your Smart Expense Tracker." Do not add any greeting, explanation, or extra characters.
+3. Use the real user data in INR (₹) for context. Always format currency as ₹ (INR), never use $ (USD).
+4. Provide a professional, encouraging, and clear answer.
+5. Limit your response to 2-3 short paragraphs or clean bullet points.
+6. Output your answer using clean Markdown.
     `;
 
     const reply = await callGemini(prompt);
     res.status(200).json({ reply });
   } catch (error) {
     if (error.message.includes('Gemini API key') || error.message.includes('API key')) {
-      res.status(200).json({
-        reply: `Hello! I'm SmartFinance AI. It looks like the Gemini API Key is not set up in the backend yet. Ask your developer to add a \`GEMINI_API_KEY\` to the \`backend/.env\` file.\n\nWithout the API key, I can still tell you that based on your records, your current net savings rate is calculated by comparing your logged income against your expenses! Let me know if you want tips on manual budget setting!`,
-      });
+      const relatedKeywords = [
+        'income', 'expense', 'budget', 'saving', 'transaction', 'analytic', 
+        'spending', 'spent', 'earn', 'salary', 'finance', 'money', 'cost', 
+        'chart', 'graph', 'report', 'balance', 'track', 'category', 'dining',
+        'shopping', 'groceries', 'rent', 'utilities', 'bills', 'rupee', 'inr', '₹'
+      ];
+      const messageLower = message.toLowerCase();
+      const isRelated = relatedKeywords.some(keyword => messageLower.includes(keyword)) || 
+                        /₹|amount|total|sum|history|show|list|how much/i.test(messageLower);
+
+      if (!isRelated) {
+        res.status(200).json({
+          reply: "I can only answer questions related to your Smart Expense Tracker."
+        });
+      } else {
+        res.status(200).json({
+          reply: `Hello! I'm SmartFinance AI. It looks like the Gemini API Key is not set up in the backend yet. Ask your developer to add a \`GEMINI_API_KEY\` to the \`backend/.env\` file.\n\nWithout the API key, I can still tell you that based on your records, your current net savings rate is calculated by comparing your logged income against your expenses! Let me know if you want tips on manual budget setting!`,
+        });
+      }
     } else {
       next(error);
     }
