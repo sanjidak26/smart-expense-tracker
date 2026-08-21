@@ -26,14 +26,14 @@ import {
 } from 'lucide-react';
 
 const COLORS = [
-  '#9D174D',
-  '#BE185D',
-  '#DB2777',
-  '#E75480',
-  '#F08AAA',
-  '#F6B6C8',
-  '#F9CBD8',
-  '#831843',
+  '#DB2777', // Professional Pink (Brand)
+  '#8B5CF6', // Purple Accent
+  '#EA580C', // Orange Accent
+  '#D4A72C', // Gold Accent
+  '#DC2626', // Red Accent
+  '#64748B', // Neutral Slate
+  '#BE185D', // Dark Pink/Burgundy
+  '#4F46E5', // Indigo Accent
 ];
 const Analytics = () => {
   const { addToast } = useToast();
@@ -230,22 +230,32 @@ const Analytics = () => {
                   <AreaChart data={monthlyData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                     <defs>
                       <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#7C3AED" stopOpacity={0.35} />
-                        <stop offset="100%" stopColor="#EDE9FE" stopOpacity={0.05} />
+                        <stop offset="0%" stopColor="var(--color-income)" stopOpacity={0.35} />
+                        <stop offset="100%" stopColor="var(--color-income)" stopOpacity={0.01} />
                       </linearGradient>
 
                       <linearGradient id="colorExpense" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#E11D48" stopOpacity={0.35} />
-                        <stop offset="100%" stopColor="#FFE4E6" stopOpacity={0.05} />
+                        <stop offset="0%" stopColor="var(--color-expense)" stopOpacity={0.35} />
+                        <stop offset="100%" stopColor="var(--color-expense)" stopOpacity={0.01} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" className="dark:stroke-slate-800" />
                     <XAxis dataKey="name" stroke="#94A3B8" />
                     <YAxis stroke="#94A3B8" />
-                    <Tooltip formatter={(value) => formatCurrency(value)} />
+                    <Tooltip
+                      formatter={(value) => formatCurrency(value)}
+                      contentStyle={{
+                        backgroundColor: 'var(--tooltip-bg)',
+                        borderColor: 'var(--tooltip-border)',
+                        borderRadius: '12px',
+                        color: 'var(--tooltip-text)',
+                      }}
+                      labelStyle={{ color: 'var(--tooltip-label)' }}
+                      itemStyle={{ color: 'var(--tooltip-text)' }}
+                    />
                     <Legend />
-                    <Area type="monotone" dataKey="Income" stroke="#7C3AED" strokeWidth={2.5} fillOpacity={1} fill="url(#colorIncome)" />
-                    <Area type="monotone" dataKey="Expense" stroke="#F97316" strokeWidth={2.5} fillOpacity={1} fill="url(#colorExpense)" />
+                    <Area type="monotone" dataKey="Income" stroke="var(--color-income)" strokeWidth={2.5} fillOpacity={1} fill="url(#colorIncome)" />
+                    <Area type="monotone" dataKey="Expense" stroke="var(--color-expense)" strokeWidth={2.5} fillOpacity={1} fill="url(#colorExpense)" />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
@@ -255,7 +265,7 @@ const Analytics = () => {
             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm flex flex-col">
               <div className="mb-4">
                 <h3 className="font-extrabold text-slate-800 dark:text-slate-100 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-gold" />
+                  <TrendingUp className="w-5 h-5 text-income" />
                   <span>Total Cash flow Summary</span>
                 </h3>
                 <p className="text-xs text-slate-450 dark:text-slate-400 mt-0.5">Sum of total incomes versus total expenditures</p>
@@ -267,10 +277,20 @@ const Analytics = () => {
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" className="dark:stroke-slate-800" />
                     <XAxis dataKey="name" stroke="#94A3B8" />
                     <YAxis stroke="#94A3B8" />
-                    <Tooltip formatter={(value) => formatCurrency(value)} />
+                    <Tooltip
+                      formatter={(value) => formatCurrency(value)}
+                      contentStyle={{
+                        backgroundColor: 'var(--tooltip-bg)',
+                        borderColor: 'var(--tooltip-border)',
+                        borderRadius: '12px',
+                        color: 'var(--tooltip-text)',
+                      }}
+                      labelStyle={{ color: 'var(--tooltip-label)' }}
+                      itemStyle={{ color: 'var(--tooltip-text)' }}
+                    />
                     <Bar dataKey="Value" radius={[12, 12, 0, 0]} maxBarSize={60}>
                       {overallData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={index === 0 ? '#D4A72C' : '#BE123C'} />
+                        <Cell key={`cell-${index}`} fill={index === 0 ? 'var(--color-income)' : 'var(--color-expense)'} />
                       ))}
                     </Bar>
                   </BarChart>
@@ -312,7 +332,17 @@ const Analytics = () => {
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                           ))}
                         </Pie>
-                        <Tooltip formatter={(value) => formatCurrency(value)} />
+                        <Tooltip
+                          formatter={(value) => formatCurrency(value)}
+                          contentStyle={{
+                            backgroundColor: 'var(--tooltip-bg)',
+                            borderColor: 'var(--tooltip-border)',
+                            borderRadius: '12px',
+                            color: 'var(--tooltip-text)',
+                          }}
+                          labelStyle={{ color: 'var(--tooltip-label)' }}
+                          itemStyle={{ color: 'var(--tooltip-text)' }}
+                        />
                       </PieChart>
                     </ResponsiveContainer>
                   </div>

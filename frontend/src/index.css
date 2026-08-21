@@ -14,8 +14,33 @@
   --white: #FFFFFF;
   --text: #1F1720;
   --muted-text: #6B5B66;
-  --expense: #E11D48;
-  --warning: #D97706;
+
+  /* Adaptive Semantic Colors - Light Mode */
+  --color-success: #059669;      /* Emerald 600 - clean success */
+  --color-success-light: #ECFDF5;/* Emerald 50 */
+  --color-success-dark: #047857; /* Emerald 700 */
+
+  --color-warning: #D97706;      /* Amber 600 - high contrast warning */
+  --color-warning-light: #FFFBEB;/* Amber 50 */
+  --color-warning-dark: #B45309; /* Amber 700 */
+
+  --color-error: #DC2626;        /* Red 600 - high contrast error */
+  --color-error-light: #FEF2F2;  /* Red 50 */
+  --color-error-dark: #991B1B;   /* Red 800 */
+
+  --color-income: #0D9488;       /* Teal 600 - clean income */
+  --color-income-light: #F0FDFA; /* Teal 50 */
+  --color-income-dark: #0F766E;  /* Teal 700 */
+
+  --color-expense: #E11D48;      /* Rose 600 - clean expense */
+  --color-expense-light: #FFF1F2;/* Rose 50 */
+  --color-expense-dark: #BE123C; /* Rose 700 */
+
+  /* Recharts Tooltip - Light Mode */
+  --tooltip-bg: #FFFFFF;
+  --tooltip-border: #E2E8F0;
+  --tooltip-text: #1F1720;
+  --tooltip-label: #1F1720;
 }
 
 body {
@@ -26,9 +51,49 @@ body {
 }
 
 /* Dark mode */
+.dark {
+  /* Adaptive Semantic Colors - Dark Mode */
+  --color-success: #34D399;      /* Emerald 400 - bright success */
+  --color-success-light: #064E3B;/* Emerald 950 */
+  --color-success-dark: #6EE7B7; /* Emerald 300 */
+
+  --color-warning: #FBBF24;      /* Amber 400 - bright warning */
+  --color-warning-light: #78350F;/* Amber 900 */
+  --color-warning-dark: #FDE047; /* Amber 300 */
+
+  --color-error: #F87171;        /* Red 400 - bright error */
+  --color-error-light: #7F1D1D;  /* Red 950 */
+  --color-error-dark: #FCA5A5;   /* Red 300 */
+
+  --color-income: #2DD4BF;       /* Teal 400 - bright income */
+  --color-income-light: #115E59; /* Teal 800 */
+  --color-income-dark: #99F6E4;  /* Teal 200 */
+
+  --color-expense: #FB7185;      /* Rose 400 - bright expense */
+  --color-expense-light: #4C0519;/* Rose 950 */
+  --color-expense-dark: #FDA4AF; /* Rose 300 */
+
+  /* Recharts Tooltip - Dark Mode */
+  --tooltip-bg: #1F1720;
+  --tooltip-border: #374151;
+  --tooltip-text: #FFF7FB;
+  --tooltip-label: #FFF7FB;
+}
+
 .dark body {
   background-color: #1F1720;
   color: #FFF7FB;
+}
+
+/* Ensure high contrast for muted slate texts in dark mode globally */
+.dark .dark\:text-slate-500 {
+  color: #94A3B8 !important; /* Force to slate-400 */
+}
+.dark .dark\:text-slate-450 {
+  color: #94A3B8 !important; /* Force to slate-400 */
+}
+.dark .dark\:text-slate-455 {
+  color: #94A3B8 !important; /* Force to slate-400 */
 }
 
 /* Micro-animations */

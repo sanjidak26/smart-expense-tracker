@@ -113,7 +113,7 @@ const Profile = () => {
       
       {/* HEADER */}
       <div>
-        <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-55">
+        <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50">
           Profile Settings
         </h1>
         <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
@@ -192,7 +192,7 @@ const Profile = () => {
 
           {/* Secure session info badge */}
           <div className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center gap-2.5 text-xs text-slate-400">
-            <ShieldCheck className="w-4.5 h-4.5 text-gold shrink-0" />
+            <ShieldCheck className="w-4.5 h-4.5 text-success shrink-0" />
             <span>Updates are secured with end-to-end token encryption.</span>
           </div>
         </div>

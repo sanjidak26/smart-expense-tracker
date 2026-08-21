@@ -253,7 +253,7 @@ const Transactions = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={handleExportCSV}
-            className="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-bold text-slate-650 dark:text-slate-350 transition duration-200 cursor-pointer shadow-sm"
+            className="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-bold text-brand-650 dark:text-slate-350 transition duration-200 cursor-pointer shadow-sm"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export CSV</span>
@@ -261,7 +261,7 @@ const Transactions = () => {
 
           <button
             onClick={handlePrintPDF}
-            className="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-bold text-slate-655 dark:text-slate-350 transition duration-200 cursor-pointer shadow-sm"
+            className="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-bold text-brand-650 dark:text-slate-350 transition duration-200 cursor-pointer shadow-sm"
           >
             <Printer className="w-3.5 h-3.5" />
             <span>Print Report</span>
@@ -386,10 +386,10 @@ const Transactions = () => {
             <span className="text-xs font-bold text-slate-400 dark:text-slate-500">Retrieving logs...</span>
           </div>
         ) : transactions.length === 0 ? (
-          <div className="py-20 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 gap-2">
-            <Search className="w-10 h-10 text-slate-300 dark:text-slate-700" />
+          <div className="py-20 flex flex-col items-center justify-center text-slate-400 dark:text-slate-400 gap-2">
+            <Search className="w-10 h-10 text-slate-300 dark:text-slate-500" />
             <span className="text-sm font-semibold">No records found</span>
-            <p className="text-xs text-slate-400 max-w-xs text-center leading-relaxed">
+            <p className="text-xs text-slate-450 dark:text-slate-400 max-w-xs text-center leading-relaxed">
               We couldn't find any transactions. Try adjusting your search queries or filter selections.
             </p>
           </div>
@@ -397,7 +397,7 @@ const Transactions = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-850/50 border-b border-slate-200 dark:border-slate-800 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                <tr className="bg-slate-50 dark:bg-slate-850/50 border-b border-slate-200 dark:border-slate-800 text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                   <th className="py-4 px-6">Date</th>
                   <th className="py-4 px-6">Type</th>
                   <th className="py-4 px-6">Category</th>
@@ -421,7 +421,7 @@ const Transactions = () => {
                     </td>
                     <td className="py-4.5 px-6 whitespace-nowrap">
                       <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase border ${tx.type === 'income'
-                          ? 'bg-gold/10 border-gold/20 text-gold-700 dark:text-gold-400'
+                          ? 'bg-success-light border-success/20 text-success-dark dark:text-success'
                           : 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300'
                         }`}>
                         {tx.type === 'income' ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
@@ -434,7 +434,7 @@ const Transactions = () => {
                     <td className="py-4.5 px-6 text-sm max-w-xs truncate">
                       {tx.description || <span className="text-slate-400 dark:text-slate-600 italic">No description</span>}
                     </td>
-                    <td className={`py-4.5 px-6 text-sm font-bold text-right whitespace-nowrap ${tx.type === 'income' ? 'text-gold' : 'text-slate-800 dark:text-slate-100'
+                    <td className={`py-4.5 px-6 text-sm font-bold text-right whitespace-nowrap ${tx.type === 'income' ? 'text-success-dark dark:text-success' : 'text-slate-800 dark:text-slate-100'
                       }`}>
                       {tx.type === 'income' ? '+' : '-'}
                       {formatCurrency(tx.amount)}

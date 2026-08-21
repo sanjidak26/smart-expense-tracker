@@ -50,7 +50,7 @@ const Home = () => {
         <div className="w-full max-w-lg bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl relative">
           
           {/* Status Badge */}
-          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-gold-400 text-xs font-semibold shadow-md">
+          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-success-light border border-success/30 text-success text-xs font-semibold shadow-md">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Authenticated Session</span>
           </div>

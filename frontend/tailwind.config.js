@@ -23,14 +23,29 @@ export default {
           950: '#500724',
         },
         success: {
-          DEFAULT: '#D4A72C', // Gold
-          light: '#FFFBEB',
-          dark: '#B45309',
+          DEFAULT: 'var(--color-success)',
+          light: 'var(--color-success-light)',
+          dark: 'var(--color-success-dark)',
         },
         warning: {
-          DEFAULT: '#D4A72C', // Gold
-          light: '#FFFBEB',
-          dark: '#B45309',
+          DEFAULT: 'var(--color-warning)',
+          light: 'var(--color-warning-light)',
+          dark: 'var(--color-warning-dark)',
+        },
+        error: {
+          DEFAULT: 'var(--color-error)',
+          light: 'var(--color-error-light)',
+          dark: 'var(--color-error-dark)',
+        },
+        income: {
+          DEFAULT: 'var(--color-income)',
+          light: 'var(--color-income-light)',
+          dark: 'var(--color-income-dark)',
+        },
+        expense: {
+          DEFAULT: 'var(--color-expense)',
+          light: 'var(--color-expense-light)',
+          dark: 'var(--color-expense-dark)',
         },
         finBg: '#FFF7FB',
         finText: '#1F1720',
@@ -41,7 +56,23 @@ export default {
         warmwhite: '#FAFAF9',
         darkText: '#1C1917',
 
-        // Safety net: Map built-in blue, indigo, green, emerald, cyan, teal to avoid any blue/green leaks
+        // Custom slate color shades to support non-standard classes used in the codebase
+        slate: {
+          150: '#EBF0F6',
+          350: '#94A3B8',
+          450: '#64748B',
+          455: '#64748B',
+          505: '#475569',
+          550: '#475569',
+          650: '#334155',
+          655: '#334155',
+          750: '#1E293B',
+          850: '#111827',
+          855: '#0F172A',
+          905: '#020617',
+        },
+
+        // Safety net: Map built-in blue, indigo, cyan to brand pink to avoid blue leaks
         indigo: {
           50: '#FFF1F2',
           100: '#FFE4E6',
@@ -54,19 +85,6 @@ export default {
           800: '#9D174D',
           900: '#831843',
           950: '#500724',
-        },
-        emerald: {
-          50: '#FFFBEB',
-          100: '#FEF9C3',
-          200: '#FEF08A',
-          300: '#FDE047',
-          400: '#D4A72C', // Gold
-          500: '#D4A72C', // Gold
-          600: '#A16207',
-          700: '#854D0E',
-          800: '#713F12',
-          900: '#422006',
-          950: '#1C1917',
         },
         blue: {
           50: '#FFF1F2',
@@ -81,23 +99,11 @@ export default {
           900: '#831843',
           950: '#500724',
         },
-        green: {
-          50: '#FFFBEB',
-          100: '#FEF9C3',
-          500: '#D4A72C', // Gold
-          600: '#A16207',
-        },
         cyan: {
           50: '#FFF1F2',
           100: '#FFE4E6',
           500: '#EC4899',
           600: '#DB2777',
-        },
-        teal: {
-          50: '#FFFBEB',
-          100: '#FEF9C3',
-          500: '#D4A72C', // Gold
-          600: '#A16207',
         }
       },
     },

@@ -93,8 +93,8 @@ const Login = () => {
         )}
 
         {uiState.success && (
-          <div className="mb-6 flex items-start gap-3 p-4 bg-gold/10 border border-gold/30 rounded-2xl text-gold text-sm">
-            <Check className="w-5 h-5 shrink-0 text-gold" />
+          <div className="mb-6 flex items-start gap-3 p-4 bg-success-light border border-success/30 rounded-2xl text-success text-sm">
+            <Check className="w-5 h-5 shrink-0 text-success" />
             <span>{uiState.success}</span>
           </div>
         )}

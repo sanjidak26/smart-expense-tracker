@@ -104,7 +104,7 @@ const Dashboard = () => {
 
   const getCategoryColor = (category) => {
     const cats = {
-      salary: 'bg-gold/10 text-gold border-gold/20',
+      salary: 'bg-success-light text-success-dark dark:text-success border-success/25',
       food: 'bg-brand-500/10 text-brand-500 border-brand-500/20',
       dining: 'bg-brand-500/10 text-brand-500 border-brand-500/20',
       utilities: 'bg-brand-600/10 text-brand-650 border-brand-600/20',
@@ -174,13 +174,13 @@ const Dashboard = () => {
             <div className="p-3 bg-brand-50 dark:bg-brand-950/40 rounded-2xl text-brand-600 dark:text-brand-400">
               <Wallet className="w-6 h-6" />
             </div>
-            <span className="text-xs font-bold text-slate-400 dark:text-slate-500">Net Wealth</span>
+            <span className="text-xs font-bold text-slate-450 dark:text-slate-400">Net Wealth</span>
           </div>
           <p className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 truncate">
             {formatCurrency(summary.balance)}
           </p>
           <div className="flex items-center gap-1 mt-2.5">
-            <div className={`text-xs font-bold flex items-center ${summary.balance >= 0 ? 'text-gold' : 'text-brand-600'}`}>
+            <div className={`text-xs font-bold flex items-center ${summary.balance >= 0 ? 'text-success-dark dark:text-success' : 'text-error-dark dark:text-error'}`}>
               <Activity className="w-3.5 h-3.5 mr-1" />
               <span>Current Cash Balance</span>
             </div>
@@ -189,36 +189,36 @@ const Dashboard = () => {
 
         {/* Income Card */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-gold/5 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
+          <div className="absolute right-0 top-0 w-24 h-24 bg-success-light/20 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
           <div className="flex justify-between items-start mb-4">
-            <div className="p-3 bg-gold/10 dark:bg-gold/10 rounded-2xl text-gold">
+            <div className="p-3 bg-success-light text-success-dark dark:text-success rounded-2xl">
               <TrendingUp className="w-6 h-6" />
             </div>
-            <span className="text-xs font-bold text-slate-400 dark:text-slate-500">Inflow</span>
+            <span className="text-xs font-bold text-slate-450 dark:text-slate-400">Inflow</span>
           </div>
-          <p className="text-2xl font-extrabold text-gold truncate">
+          <p className="text-2xl font-extrabold text-success-dark dark:text-success truncate">
             {formatCurrency(summary.income)}
           </p>
-          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 mt-2.5 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+          <p className="text-xs font-bold text-slate-450 dark:text-slate-400 mt-2.5 flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-success" />
             Total monthly income
           </p>
         </div>
 
         {/* Expense Card */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-brand-600/5 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
+          <div className="absolute right-0 top-0 w-24 h-24 bg-expense-light/20 rounded-bl-full transition-all duration-300 group-hover:scale-110" />
           <div className="flex justify-between items-start mb-4">
-            <div className="p-3 bg-brand-50 dark:bg-brand-900/40 rounded-2xl text-brand-500">
+            <div className="p-3 bg-expense-light text-expense-dark dark:text-expense rounded-2xl">
               <TrendingDown className="w-6 h-6" />
             </div>
-            <span className="text-xs font-bold text-slate-400 dark:text-slate-500">Outflow</span>
+            <span className="text-xs font-bold text-slate-455 dark:text-slate-400">Outflow</span>
           </div>
-          <p className="text-2xl font-extrabold text-brand-655 dark:text-brand-500 truncate">
+          <p className="text-2xl font-extrabold text-expense-dark dark:text-expense truncate">
             {formatCurrency(summary.expense)}
           </p>
-          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 mt-2.5 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-500" />
+          <p className="text-xs font-bold text-slate-455 dark:text-slate-400 mt-2.5 flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-expense" />
             Total monthly expenses
           </p>
         </div>
@@ -230,7 +230,7 @@ const Dashboard = () => {
             <div className="p-3 bg-brand-50 dark:bg-brand-900/40 rounded-2xl text-brand-500">
               <Sparkles className="w-6 h-6" />
             </div>
-            <span className="text-xs font-bold text-slate-400 dark:text-slate-500">Savings Rate</span>
+            <span className="text-xs font-bold text-slate-450 dark:text-slate-400">Savings Rate</span>
           </div>
           <p className="text-2xl font-extrabold text-brand-600 dark:text-brand-400 truncate">
             {summary.savingsRate}%
@@ -285,7 +285,7 @@ const Dashboard = () => {
                         <h5 className="text-sm font-semibold text-slate-850 dark:text-slate-200 max-w-[150px] sm:max-w-xs truncate">
                           {tx.description || tx.category}
                         </h5>
-                        <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mt-0.5">
+                        <p className="text-[10px] font-bold text-slate-450 dark:text-slate-400 uppercase tracking-wider mt-0.5">
                           {new Date(tx.date).toLocaleDateString('en-US', {
                             month: 'short',
                             day: 'numeric',
@@ -295,7 +295,7 @@ const Dashboard = () => {
                     </div>
 
                     <div className="text-right">
-                      <span className={`text-sm font-bold flex items-center justify-end ${tx.type === 'income' ? 'text-gold' : 'text-slate-800 dark:text-slate-200'
+                      <span className={`text-sm font-bold flex items-center justify-end ${tx.type === 'income' ? 'text-success-dark dark:text-success' : 'text-slate-800 dark:text-slate-200'
                         }`}>
                         {tx.type === 'income' ? '+' : '-'}
                         {formatCurrency(tx.amount)}
@@ -311,18 +311,18 @@ const Dashboard = () => {
         {/* BUDGET PROGRESS WARNING ALERTS */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm flex flex-col">
           <div className="mb-6">
-            <h3 className="font-extrabold text-slate-855 dark:text-slate-100">Budget Indicators</h3>
+            <h3 className="font-extrabold text-slate-850 dark:text-slate-100">Budget Indicators</h3>
             <p className="text-xs text-slate-450 dark:text-slate-400">Monitoring categories nearing or exceeding limits</p>
           </div>
 
           <div className="flex-1 overflow-y-auto space-y-4">
             {budgetAlerts.length === 0 ? (
-              <div className="h-full min-h-[220px] flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 gap-2 text-center px-4">
-                <div className="w-12 h-12 bg-gold/10 dark:bg-gold/15 rounded-full flex items-center justify-center text-gold mb-2">
+              <div className="h-full min-h-[220px] flex flex-col items-center justify-center text-slate-450 dark:text-slate-450 gap-2 text-center px-4">
+                <div className="w-12 h-12 bg-success-light dark:bg-success-light/20 rounded-full flex items-center justify-center text-success-dark dark:text-success mb-2">
                   <TrendingUp className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-350">All Budgets Safe</span>
-                <p className="text-[10px] text-slate-400 dark:text-slate-500 leading-relaxed">
+                <p className="text-[10px] text-slate-450 dark:text-slate-400 leading-relaxed">
                   Excellent work! No categories have exceeded or are close to 85% of their budgets this month.
                 </p>
               </div>
@@ -331,8 +331,8 @@ const Dashboard = () => {
                 <div
                   key={alert._id}
                   className={`p-4.5 rounded-2xl border ${alert.isExceeded
-                      ? 'bg-brand-600/5 dark:bg-brand-600/10 border-brand-600/20 text-brand-600 dark:text-brand-400'
-                      : 'bg-gold/5 dark:bg-gold/10 border-gold/20 text-gold dark:text-gold'
+                      ? 'bg-error-light border-error/20 text-error-dark dark:text-error'
+                      : 'bg-warning-light border-warning/20 text-warning-dark dark:text-warning'
                     }`}
                 >
                   <div className="flex items-center justify-between mb-2">
@@ -347,7 +347,7 @@ const Dashboard = () => {
 
                   <div className="w-full bg-slate-200/50 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mb-2">
                     <div
-                      className={`h-full rounded-full transition-all duration-300 ${alert.isExceeded ? 'bg-brand-600' : 'bg-gold'
+                      className={`h-full rounded-full transition-all duration-300 ${alert.isExceeded ? 'bg-error' : 'bg-warning'
                         }`}
                       style={{ width: `${Math.min(100, alert.percentage)}%` }}
                     />

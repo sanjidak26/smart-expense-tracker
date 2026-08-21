@@ -276,7 +276,7 @@ const AIAssistant = () => {
                 <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border shadow-sm ${
                   m.role === 'user'
                     ? 'bg-brand-50 border-brand-200 dark:bg-brand-950 dark:border-brand-850 text-brand-600 dark:text-brand-450'
-                    : 'bg-gold/10 border-gold/20 dark:bg-slate-850 dark:border-slate-800 text-gold dark:text-gold'
+                    : 'bg-success-light border-success/20 text-success-dark dark:text-success'
                 }`}>
                   {m.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                 </div>
@@ -301,7 +301,7 @@ const AIAssistant = () => {
             {/* AI is thinking bubble */}
             {sendingMessage && (
               <div className="flex gap-4 max-w-[80%]">
-                <div className="w-9 h-9 rounded-xl bg-gold/10 dark:bg-slate-850 border border-gold/20 dark:border-slate-800 text-gold dark:text-gold flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-success-light border border-success/20 text-success-dark dark:text-success flex items-center justify-center shrink-0">
                   <Bot className="w-4 h-4" />
                 </div>
                 <div className="bg-slate-50 dark:bg-slate-950/60 border border-slate-100 dark:border-slate-900 p-4 rounded-3xl rounded-tl-none flex items-center gap-2 text-slate-400 text-sm">

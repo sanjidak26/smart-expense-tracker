@@ -264,10 +264,10 @@ const Budgets = () => {
             <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
               <div
                 className={`h-full rounded-full transition-all duration-500 ${totals.isExceeded
-                    ? 'bg-brand-600'
+                    ? 'bg-error'
                     : totals.isNearLimit
-                      ? 'bg-brand-500'
-                      : 'bg-gold'
+                      ? 'bg-warning'
+                      : 'bg-success'
                   }`}
                 style={{ width: `${Math.min(100, totals.percentage)}%` }}
               />
@@ -277,15 +277,15 @@ const Budgets = () => {
               <span className="text-slate-400 dark:text-slate-500">Usage: {totals.percentage.toFixed(0)}%</span>
               <span>
                 {totals.isExceeded ? (
-                  <span className="text-brand-600 flex items-center gap-1">
+                  <span className="text-error flex items-center gap-1">
                     <AlertTriangle className="w-3.5 h-3.5" /> Exceeded
                   </span>
                 ) : totals.isNearLimit ? (
-                  <span className="text-brand-500 flex items-center gap-1">
+                  <span className="text-warning flex items-center gap-1">
                     <AlertTriangle className="w-3.5 h-3.5" /> Near Limit
                   </span>
                 ) : (
-                  <span className="text-gold flex items-center gap-1">
+                  <span className="text-success flex items-center gap-1">
                     <CheckCircle className="w-3.5 h-3.5" /> Within Budget
                   </span>
                 )}
@@ -324,9 +324,9 @@ const Budgets = () => {
               <div
                 key={item._id}
                 className={`p-5 rounded-2xl border transition hover:shadow-sm ${item.isExceeded
-                    ? 'border-brand-600/30 bg-brand-600/[0.02] dark:bg-brand-600/[0.04]'
+                    ? 'border-error/30 bg-error-light/50'
                     : item.isNearLimit
-                      ? 'border-brand-500/30 bg-brand-500/[0.02] dark:bg-brand-500/[0.04]'
+                      ? 'border-warning/30 bg-warning-light/50'
                       : 'border-slate-100 dark:border-slate-800 bg-slate-50/[0.3] dark:bg-slate-900/20'
                   }`}
               >
@@ -334,10 +334,10 @@ const Budgets = () => {
                   <div>
                     <h4 className="font-extrabold text-sm text-slate-850 dark:text-slate-100">{item.category}</h4>
                     <span className={`inline-flex items-center gap-1 px-2 py-0.5 mt-1 rounded-full text-[9px] font-extrabold uppercase border ${item.isExceeded
-                        ? 'bg-brand-600/10 border-brand-600/20 text-brand-600 dark:text-brand-400'
+                        ? 'bg-error-light border-error/25 text-error-dark dark:text-error'
                         : item.isNearLimit
-                          ? 'bg-brand-500/10 border-brand-500/20 text-brand-500 dark:text-brand-400'
-                          : 'bg-gold/10 border-gold/20 text-gold-700 dark:text-gold-400'
+                          ? 'bg-warning-light border-warning/25 text-warning-dark dark:text-warning'
+                          : 'bg-success-light border-success/25 text-success-dark dark:text-success'
                       }`}>
                       {item.isExceeded ? 'Exceeded' : item.isNearLimit ? 'Near Limit' : 'Safe'}
                     </span>
@@ -345,7 +345,7 @@ const Budgets = () => {
 
                   <div className="text-right">
                     <span className="text-xs text-slate-400 dark:text-slate-500 font-bold block">Percentage</span>
-                    <span className={`text-base font-extrabold ${item.isExceeded ? 'text-brand-600' : item.isNearLimit ? 'text-brand-500' : 'text-slate-800 dark:text-slate-200'
+                    <span className={`text-base font-extrabold ${item.isExceeded ? 'text-error' : item.isNearLimit ? 'text-warning' : 'text-slate-800 dark:text-slate-200'
                       }`}>
                       {item.percentage.toFixed(0)}%
                     </span>
@@ -355,7 +355,7 @@ const Budgets = () => {
                 {/* Progress Bar */}
                 <div className="w-full bg-slate-200/50 dark:bg-slate-850 h-2 rounded-full overflow-hidden mb-3.5">
                   <div
-                    className={`h-full rounded-full transition-all duration-300 ${item.isExceeded ? 'bg-brand-600' : item.isNearLimit ? 'bg-brand-500' : 'bg-gold'
+                    className={`h-full rounded-full transition-all duration-300 ${item.isExceeded ? 'bg-error' : item.isNearLimit ? 'bg-warning' : 'bg-success'
                       }`}
                     style={{ width: `${Math.min(100, item.percentage)}%` }}
                   />
